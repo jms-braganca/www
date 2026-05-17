@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" aria-label="Itaú">
+  <!-- Fundo arredondado laranja Itaú -->
+  <rect x="10" y="10" width="180" height="180" rx="36" ry="36" fill="#EC7000"/>
+  <!-- Wordmark "itaú" em branco, tipografia geométrica -->
+  <g fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-weight="700">
+    <text x="100" y="128" text-anchor="middle" font-size="92" letter-spacing="-3">itaú</text>
+  </g>
+</svg>
