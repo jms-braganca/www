@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endividamento das famílias brasileiras · João Bragança</title>
+<meta name="description" content="10 anos de dados do BACEN sobre endividamento, juros e inadimplência das pessoas físicas brasileiras. Atualizado mensalmente.">
+<link rel="stylesheet" href="shared/theme.css">
+<link rel="stylesheet" href="shared/private-topbar.css">
+<link rel="stylesheet" href="shared/landing.css">
+<style>
+  /* ── Estilos específicos da página de análise ──────────────────── */
+
+  .analysis-hero {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 72px 24px 32px;
+  }
+  .analysis-hero .eyebrow {
+    font-size: 13px;
+    color: var(--landing-blue);
+    font-weight: 500;
+    margin-bottom: 18px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .analysis-hero h1 {
+    font-size: clamp(2.2rem, 4vw + 1rem, 3.6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.032em;
+    margin-bottom: 18px;
+  }
+  .analysis-hero h1 .muted { color: var(--landing-faint); font-weight: 700; }
+  .analysis-hero .lead {
+    font-size: clamp(1.05rem, 1vw + .6rem, 1.25rem);
+    color: var(--landing-muted);
+    line-height: 1.5;
+    max-width: 680px;
+  }
+  .analysis-hero .meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--landing-faint);
+    letter-spacing: 0.02em;
+  }
+  .analysis-hero .meta b { color: var(--landing-text); font-weight: 600; }
+
+  .analysis-section {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .analysis-section .section-head { margin-bottom: 28px; }
+
+  .analysis-prose p {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--landing-text);
+    margin-bottom: 18px;
+  }
+  .analysis-prose p .muted-soft { color: var(--landing-muted); }
+  .analysis-prose strong { font-weight: 600; }
+
+  .analysis-figure {
+    margin: 32px 0;
+    background: var(--landing-surface);
+    border: 1px solid var(--landing-border);
+    border-radius: var(--landing-radius-card);
+    overflow: hidden;
+  }
+  .analysis-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .analysis-figure figcaption {
+    font-size: 12.5px;
+    color: var(--landing-faint);
+    padding: 14px 20px;
+    border-top: 1px solid var(--landing-border);
+    background: var(--landing-bg-alt);
+  }
+
+  .analysis-figure.flat {
+    background: none;
+    border: none;
+    border-radius: 0;
+  }
+  .analysis-figure.flat figcaption {
+    background: none;
+    border-top: none;
+    padding: 12px 0 0;
+    text-align: center;
+  }
+
+  .figure-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  @media (max-width: 720px) { .figure-grid-2 { grid-template-columns: 1fr; } }
+
+  .panel-figure {
+    max-width: 980px;
+    margin: 48px auto;
+    padding: 0 24px;
+  }
+  .panel-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--landing-radius-card);
+  }
+  .panel-figure figcaption {
+    font-size: 12.5px;
+    color: var(--landing-faint);
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .analysis-cta {
+    max-width: 820px;
+    margin: 64px auto 80px;
+    padding: 40px 32px;
+    background: var(--landing-surface);
+    border: 1px solid var(--landing-border);
+    border-radius: var(--landing-radius-card);
+    text-align: center;
+  }
+  .analysis-cta h3 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .analysis-cta p {
+    font-size: 14.5px;
+    color: var(--landing-muted);
+    margin-bottom: 22px;
+  }
+</style>
+</head>
+<body class="private-style">
+
+<!-- ── TOPBAR ────────────────────────────────────────────────────── -->
+<header class="private-topbar landing-topbar">
+  <div class="atb-main">
+    <a href="/" class="topbar-brand" aria-label="Voltar ao site">João Bragança</a>
+    <nav class="topbar-nav">
+      <a href="/#pilares">Pilares</a>
+      <a href="/#ferramentas">Ferramentas</a>
+      <a href="/#analises">Análises</a>
+      <a href="/#carreira">Carreira</a>
+      <a href="/#contato">Contato</a>
+    </nav>
+    <a href="/#contato" class="atb-cta">Conversar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<section class="analysis-hero">
+  <p class="eyebrow">Análise · BACEN</p>
+  <h1>Endividamento das famílias brasileiras. <span class="muted">10 anos, em uma página.</span></h1>
+  <p class="lead">
+    Sete indicadores que descrevem como o brasileiro contrata, paga e atrasa
+    dívida. Tudo direto do Banco Central, atualizado mensalmente.
+  </p>
+  <div class="meta">
+    <span><b>Fonte:</b> BACEN SGS</span>
+    <span><b>Janela:</b> 10 anos</span>
+    <span><b>Atualização:</b> mensal</span>
+  </div>
+</section>
+
+<!-- ── PAINEL DE ABERTURA ────────────────────────────────────────── -->
+<figure class="panel-figure">
+  <img src="shared/assets/charts/painel_completo.png"
+       alt="Painel com 7 indicadores de endividamento das famílias brasileiras">
+  <figcaption>Sete indicadores · BACEN SGS · últimos 10 anos</figcaption>
+</figure>
+
+<!-- ── 01 · ENDIVIDAMENTO E COMPROMETIMENTO ──────────────────────── -->
+<section class="analysis-section">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <h2>O paradoxo do crédito. <span class="muted">Mais dívida, parcela parecida.</span></h2>
+  </div>
+
+  <div class="analysis-prose">
+    <p>
+      Em maio de 2016 o brasileiro médio devia cerca de <strong>41%</strong>
+      da renda anual ao Sistema Financeiro. Dez anos depois, deve mais de
+      <strong>50%</strong>. O estoque de dívida das famílias cresceu com
+      consistência ao longo da década, não foi um soluço de pandemia, foi
+      tendência.
+    </p>
+  </div>
+
+  <figure class="analysis-figure">
+    <img src="shared/assets/charts/card_endividamento_total.png"
+         alt="Endividamento total das famílias brasileiras">
+    <figcaption>SGS 29037 · Endividamento das famílias com o SFN, % da renda acumulada dos últimos 12 meses (RNDBF)</figcaption>
+  </figure>
+
+  <div class="analysis-prose">
+    <p>
+      Mas o <strong>comprometimento de renda</strong>, a parcela mensal
+      efetivamente desembolsada para pagar dívidas, subiu menos. A leitura
+      direta é simples: prazos esticaram. Famílias estão devendo mais, mas
+      pagando parcelas parecidas durante mais tempo.
+    </p>
+  </div>
+
+  <figure class="analysis-figure">
+    <img src="shared/assets/charts/card_comprometimento_renda.png"
+         alt="Comprometimento de renda das famílias">
+    <figcaption>SGS 29034 · Comprometimento de renda das famílias com o SFN, % da renda (RNDBF)</figcaption>
+  </figure>
+</section>
+
+<!-- ── 02 · ESTOQUE DE CRÉDITO ───────────────────────────────────── -->
+<section class="analysis-section">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <h2>Crédito como combustível. <span class="muted">E como peso.</span></h2>
+  </div>
+
+  <div class="analysis-prose">
+    <p>
+      O estoque de crédito PF <strong>quase triplicou</strong> em valores
+      nominais ao longo da década. Parte desse crescimento é virtuoso:
+      bancarização, novos produtos, acesso ampliado. Parte vira o problema
+      da última seção.
+    </p>
+  </div>
+
+  <figure class="analysis-figure">
+    <img src="shared/assets/charts/card_estoque_credito_pf.png"
+         alt="Estoque de crédito PF, saldo da carteira de recursos livres">
+    <figcaption>SGS 20541 · Saldo da carteira de crédito · Pessoas físicas · R$ bilhões</figcaption>
+  </figure>
+</section>
+
+<!-- ── 03 · JUROS ────────────────────────────────────────────────── -->
+<section class="analysis-section">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <h2>Juros. <span class="muted">A média esconde os extremos.</span></h2>
+  </div>
+
+  <div class="analysis-prose">
+    <p>
+      A taxa <em>média</em> de juros PF inclui crédito imobiliário, consignado
+      e veículos, que puxam o número para baixo. Mesmo assim, oscilou em torno
+      de 30% a.a. nos últimos anos, com queda em 2020 (Selic em 2%) e alta
+      desde 2022. É essa média que esconde os produtos mais tóxicos do mercado.
+    </p>
+  </div>
+
+  <figure class="analysis-figure">
+    <img src="shared/assets/charts/card_juros_pf_total.png"
+         alt="Juros médios PF, total">
+    <figcaption>SGS 20740 · Taxa média de juros das operações de crédito · Pessoas físicas · % a.a.</figcaption>
+  </figure>
+
+  <div class="analysis-prose">
+    <p>
+      <strong>Cartão de crédito rotativo</strong> e
+      <strong>cheque especial</strong> são, há anos, as duas linhas mais
+      caras do varejo bancário brasileiro. O rotativo oscila acima de 300%
+      a.a.; o cheque especial, mesmo após o cap regulatório de 2020, segue
+      em três dígitos. Dois produtos onde caiu, virou problema.
+    </p>
+  </div>
+
+  <div class="figure-grid-2">
+    <figure class="analysis-figure">
+      <img src="shared/assets/charts/card_juros_cartao_rotativo.png"
+           alt="Juros do cartão de crédito rotativo">
+      <figcaption>SGS 22022 · % a.a.</figcaption>
+    </figure>
+    <figure class="analysis-figure">
+      <img src="shared/assets/charts/card_juros_cheque_especial.png"
+           alt="Juros do cheque especial">
+      <figcaption>SGS 20741 · % a.a.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ── 04 · INADIMPLÊNCIA ────────────────────────────────────────── -->
+<section class="analysis-section">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <h2>A conta chega. <span class="muted">Inadimplência PF.</span></h2>
+  </div>
+
+  <div class="analysis-prose">
+    <p>
+      A inadimplência PF caiu na pandemia, efeito direto das renegociações
+      em massa e dos programas emergenciais. Voltou a subir desde 2022, e
+      hoje ronda os <strong>6%</strong> da carteira PF total. Não é um
+      número de crise, mas é o maior dos últimos anos e merece atenção
+      quando combinado com o que vimos acima: mais estoque, mais
+      endividamento, prazos mais longos.
+    </p>
+  </div>
+
+  <figure class="analysis-figure">
+    <img src="shared/assets/charts/card_inadimplencia_pf.png"
+         alt="Inadimplência da carteira PF com recursos livres">
+    <figcaption>SGS 21112 · Inadimplência da carteira de crédito com recursos livres · Pessoas físicas · %</figcaption>
+  </figure>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────────────────── -->
+<section class="analysis-cta">
+  <h3>Quer essa leitura aplicada ao seu portfólio?</h3>
+  <p>
+    Esses números viram tese de alocação quando combinados com renda fixa,
+    risco de crédito privado e proteção patrimonial.
+  </p>
+  <a href="/#contato" class="cta-primary">Agendar conversa</a>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <span>© 2026 João Bragança</span>
+  <span class="footer-sep">·</span>
+  <span>Fonte: BACEN SGS</span>
+  <span class="footer-sep">·</span>
+  <a href="/">início</a>
+</footer>
+
+<script src="shared/private-topbar.js"></script>
+</body>
+</html>
