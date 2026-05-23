@@ -1,6 +1,6 @@
 # jbraganca_www_v1
 
-Landing page pessoal de **João Bragança** — `www.jbraganca.com.br`.
+Landing page pessoal de *João Bragança* — `www.jbraganca.com.br`.
 
 Site estático single-page (zero build), no mesmo estilo visual Apple-like
 dos outros sites (`fundos.jbraganca.com.br` e `projects.jbraganca.com.br`).
