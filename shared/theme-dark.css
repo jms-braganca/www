@@ -1,0 +1,366 @@
+/* ============================================================
+   theme-dark.css — Dark theme da landing www.jbraganca.com.br
+
+   Ativação: body.theme-dark
+   Default = 'dark' (gerenciado por shared/theme-toggle.js).
+
+   Estratégia: a landing usa --landing-* CSS vars pra quase tudo,
+   então o grosso do override é só redeclarar essas vars em
+   body.theme-dark. O resto (cards com #fff hardcoded) tem
+   override pontual no final.
+
+   Mesma paleta do site privado dark (projects.jbraganca.com.br):
+   #000 bg + camadas #1c1c1e/#232325 + accent laranja #FF8A3D.
+   ============================================================ */
+
+
+/* ── PART 1 — Tokens da landing em dark ────────────────────── */
+body.theme-dark {
+  --landing-bg:        #000000;
+  --landing-bg-alt:    #0a0a0a;
+  --landing-surface:   #1c1c1e;
+  --landing-text:      #f5f5f7;
+  --landing-muted:     #a1a1a6;
+  --landing-faint:     #6e6e73;
+
+  /* O "blue" da landing (azul Apple) vira laranja IPB pra unificar
+     com o sistema dark de projects.jbraganca. */
+  --landing-blue:      #FF8A3D;
+  --landing-blue-h:    #FFA15E;
+  --landing-blue-soft: rgba(255, 138, 61, 0.10);
+
+  --landing-border:    rgba(255, 255, 255, 0.10);
+}
+
+
+/* ── PART 2 — Topbar (glass dark) ──────────────────────────── */
+/* PROBLEMA original: private-topbar.css define --private-glass-bg como
+   branco esmaecido (rgba(251,251,253,0.72)) e aplica em .atb-main. Como
+   .atb-main é centralizado (max-width:1100px) dentro de .landing-topbar
+   (full-width), em dark o branco do .atb-main aparecia "sanduichado"
+   entre as laterais dark do meu override da .landing-topbar.
+   Solução em 2 passos:
+     1) Sobrescrever as vars --private-glass-* pra paleta dark — todos
+        os consumidores (.atb-main e qualquer outro) herdam automático.
+     2) Garantir que .landing-topbar (full-width) tenha O MESMO bg do
+        .atb-main, pra parecer uma única barra dark contínua. */
+body.theme-dark {
+  --private-glass-bg:     rgba(10, 10, 10, 0.92);
+  --private-glass-bg-h:   rgba(18, 18, 18, 0.96);
+  --private-glass-border: rgba(255, 255, 255, 0.08);
+}
+body.theme-dark .landing-topbar {
+  background: rgba(10, 10, 10, 0.92) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+/* .atb-main não precisa de mais nada: já pega --private-glass-bg
+   (agora dark) automaticamente. Tira o border-bottom transparent dele
+   pra evitar conflito visual com o border do .landing-topbar acima. */
+body.theme-dark .landing-topbar .atb-main {
+  border-bottom: none !important;
+}
+
+/* CTA "Conversar" — invertido em dark (era preto, vira laranja) */
+body.theme-dark .landing-topbar .atb-cta {
+  background: #FF8A3D !important;
+  color: #0a0a0a !important;
+}
+body.theme-dark .landing-topbar .atb-cta:hover {
+  background: #FFA15E !important;
+}
+
+
+/* ── PART 3 — Hero ─────────────────────────────────────────── */
+body.theme-dark .hero { background: transparent; }
+body.theme-dark .hero-title { color: #f5f5f7; }
+body.theme-dark .pilar-verb { color: #FF8A3D; }
+body.theme-dark .pilar-conj { color: #6e6e73; }
+
+/* Foto do hero — frame com leve halo dark */
+body.theme-dark .hero-photo-frame {
+  background: #1c1c1e;
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.6);
+}
+body.theme-dark .hero-photo-fallback {
+  background: linear-gradient(135deg, #232325 0%, #1c1c1e 100%);
+  color: #FF8A3D;
+}
+
+
+/* ── PART 4 — CTAs (botões hero/section) ───────────────────── */
+body.theme-dark .cta-primary {
+  background: #FF8A3D !important;
+  color: #0a0a0a !important;
+}
+body.theme-dark .cta-primary:hover { background: #FFA15E !important; }
+body.theme-dark .cta-primary:active { transform: scale(.98); }
+
+body.theme-dark .cta-ghost {
+  color: #FF8A3D !important;
+  border-color: rgba(255, 138, 61, 0.40);
+}
+body.theme-dark .cta-ghost:hover {
+  background: rgba(255, 138, 61, 0.10);
+}
+
+
+/* ── PART 5 — Stats row + section heads ────────────────────── */
+body.theme-dark .stats-row {
+  background: #1c1c1e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+body.theme-dark .stat-block + .stat-block {
+  border-left-color: rgba(255, 255, 255, 0.06);
+}
+body.theme-dark .stat-num { color: #f5f5f7; }
+body.theme-dark .stat-label { color: #a1a1a6; }
+/* Sufixos (Bi / + / anos) em laranja pra puxar atenção sem competir com o número.
+   Tamanho 0.65x do número e font-weight menor pra parecer rotulo, não dígito. */
+body.theme-dark .stat-unit,
+body.theme-dark .stat-plus {
+  color: #FF8A3D !important;
+  font-weight: 500;
+  font-size: 0.65em;
+  letter-spacing: -0.01em;
+  vertical-align: 0.05em;
+}
+
+body.theme-dark .section-head h2,
+body.theme-dark .section h2,
+body.theme-dark .section h3 { color: #f5f5f7; }
+body.theme-dark .section-num { color: #FF8A3D; }
+
+
+/* ── PART 6 — Cards (pilar, ferramenta, carreira) ─────────── */
+body.theme-dark .pilar-card,
+body.theme-dark .ferramenta-card,
+body.theme-dark .carreira-item {
+  background: #1c1c1e !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #f5f5f7;
+  box-shadow: none;
+}
+body.theme-dark .pilar-card:hover,
+body.theme-dark .ferramenta-card:hover,
+body.theme-dark .carreira-item:hover {
+  background: #232325 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  transform: translateY(-2px);
+}
+
+body.theme-dark .pilar-card-icon {
+  background: rgba(255, 138, 61, 0.14);
+  color: #FF8A3D;
+}
+body.theme-dark .pilar-card-title,
+body.theme-dark .card-eyebrow { color: #f5f5f7; }
+body.theme-dark .pilar-card-sub,
+body.theme-dark .pilar-card-desc,
+body.theme-dark .card-meta,
+body.theme-dark .card-foot { color: #a1a1a6; }
+body.theme-dark .pilar-card-list li { color: #a1a1a6; }
+body.theme-dark .pilar-card-list li::before { color: #FF8A3D; }
+
+body.theme-dark .card-link,
+body.theme-dark .card-arrow { color: #FF8A3D; }
+
+
+/* ── PART 7 — Plataformas (logos dos bancos) ───────────────── */
+/* Os logos originais (BTG, XP, Inter) são escuros — em fundo preto
+   sumiam. Solução: card claro com padding em volta de cada um, tira
+   o filtro grayscale + opacity da versão light. Itaú SVG laranja já
+   se vira bem em dark, mas mantemos card discreto. */
+body.theme-dark .plat-logo {
+  height: auto !important;
+  padding: 10px 18px;
+  background: #f5f5f7;
+  border-radius: 12px;
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  filter: none !important;
+  opacity: 1 !important;
+}
+body.theme-dark .plat-logo img {
+  max-height: 28px !important;
+  height: 28px !important;
+  display: block;
+}
+body.theme-dark .plat-logo-itau {
+  background: transparent;
+  padding: 0;
+  border: none;
+  height: 40px !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+body.theme-dark .plat-logo-itau img {
+  height: 40px !important;
+  max-height: 40px !important;
+}
+body.theme-dark .plataformas-row {
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body.theme-dark .plataformas-eyebrow { color: #6e6e73; }
+
+
+/* ── PART 8 — Carreira (timeline + cards) ──────────────────── */
+/* Logos dos bancos (Itaú, Inter, Alfa) — alguns são coloridos em fundo
+   transparente, outros têm cores escuras. Card claro garante que TODOS
+   ficam legíveis (mesma lógica das plataformas). */
+body.theme-dark .carreira-logo {
+  background: #f5f5f7 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+body.theme-dark .carreira-empresa,
+body.theme-dark .carreira-periodo { color: #f5f5f7; }
+body.theme-dark .carreira-desc,
+body.theme-dark .carreira-info { color: #a1a1a6; }
+body.theme-dark .carreira-stat .stat-num { color: #FF8A3D; }
+body.theme-dark .carreira-tag {
+  background: rgba(255, 138, 61, 0.14);
+  color: #FF8A3D;
+}
+
+
+/* ── PART 9 — Formação ────────────────────────────────────── */
+body.theme-dark .formacao-mini { color: #a1a1a6; }
+body.theme-dark .formacao-mini-label { color: #f5f5f7; }
+body.theme-dark .formacao-mini-sep { color: #3a3a3c; }
+
+
+/* ── PART 10 — Contato ────────────────────────────────────── */
+body.theme-dark .section-contato { background: transparent; }
+body.theme-dark .contato-card {
+  background: #1c1c1e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+body.theme-dark .contato-link {
+  background: #1c1c1e !important;   /* era #fff hardcoded */
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #f5f5f7;
+}
+body.theme-dark .contato-link:hover {
+  border-color: rgba(255, 138, 61, 0.40) !important;
+  background: #232325 !important;
+}
+body.theme-dark .contato-canal { color: #a1a1a6; }
+body.theme-dark .contato-valor { color: #f5f5f7; }
+body.theme-dark .contato-sub,
+body.theme-dark .contato-disclaimer { color: #6e6e73; }
+
+
+/* ── PART 10b — Página de análise (endividamento.html) ─────
+   Estilos inline na própria página usam --landing-* vars que já
+   herdaram dark. Mas o ".muted" dos h1/h2 (sufixos cinzas dos títulos
+   tipo "10 anos, em uma página") usa --landing-faint (#6e6e73) que
+   ficava ilegível em dark. Aqui sobrescrevemos pra cinza claro. */
+body.theme-dark .analysis-hero h1 .muted,
+body.theme-dark .analysis-section h2 .muted,
+body.theme-dark .analysis-cta h3 .muted,
+body.theme-dark h1 .muted,
+body.theme-dark h2 .muted,
+body.theme-dark h3 .muted {
+  color: #a1a1a6 !important;
+}
+
+/* Hero eyebrow ("ANÁLISE · BACEN") e meta — ja são laranja/muted, OK */
+body.theme-dark .analysis-hero .eyebrow { color: #FF8A3D; }
+body.theme-dark .analysis-hero .meta b { color: #f5f5f7; }
+body.theme-dark .analysis-prose p { color: #f5f5f7; }
+body.theme-dark .analysis-prose p .muted-soft { color: #a1a1a6; }
+body.theme-dark .analysis-prose p strong { color: #f5f5f7; }
+
+/* Card que envolve cada chart (fig + caption) */
+body.theme-dark .analysis-figure {
+  background: #1c1c1e !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+body.theme-dark .analysis-figure figcaption {
+  background: #232325 !important;
+  border-top-color: rgba(255, 255, 255, 0.06) !important;
+  color: #a1a1a6 !important;
+}
+
+/* Charts são PNGs com bg branco baked-in. Aplicamos um truque de filter
+   pra inverter a luminosidade preservando as cores aproximadamente:
+   - hue-rotate(180deg) gira o círculo de cores (red↔cyan, blue↔yellow)
+   - invert(1) inverte luminosidade (white→black, mas cores voltam ao
+     original porque já estavam giradas).
+   Não é perfeito (pastéis podem desviar), mas evita ter que regerar PNG. */
+body.theme-dark .analysis-figure img,
+body.theme-dark .panel-figure img {
+  filter: hue-rotate(180deg) invert(1);
+}
+
+/* Painel grande no topo (painel_completo.png) — mesmo tratamento */
+body.theme-dark .panel-figure figcaption { color: #a1a1a6 !important; }
+
+/* CTA final */
+body.theme-dark .analysis-cta {
+  background: #1c1c1e !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+body.theme-dark .analysis-cta h3 { color: #f5f5f7; }
+body.theme-dark .analysis-cta p { color: #a1a1a6; }
+
+
+/* ── PART 11 — Footer ─────────────────────────────────────── */
+body.theme-dark .footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  color: #6e6e73;
+}
+body.theme-dark .footer-sep { color: #3a3a3c; }
+
+
+/* ── PART 12 — Scrollbar + selection ──────────────────────── */
+body.theme-dark { color-scheme: dark; }
+body.theme-dark ::selection { background: rgba(255, 138, 61, 0.35); color: #fff; }
+body.theme-dark ::-webkit-scrollbar { width: 10px; height: 10px; }
+body.theme-dark ::-webkit-scrollbar-track { background: transparent; }
+body.theme-dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 5px;
+}
+body.theme-dark ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
+
+
+/* ── PART 13 — Botão sol/lua na topbar ────────────────────── */
+/* Injetado por shared/theme-toggle.js como filho de .atb-main.
+   Sem borda visível pra não criar "boxy" feel na topbar. */
+.atb-theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--landing-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0 12px 0 0;
+  padding: 0;
+  transition: background .18s ease, color .18s ease, transform .15s ease;
+}
+.atb-theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--landing-text);
+}
+.atb-theme-toggle:active { transform: scale(.92); }
+.atb-theme-toggle svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.atb-theme-toggle .icon-sun { display: none; }
+.atb-theme-toggle .icon-moon { display: block; }
+body.theme-dark .atb-theme-toggle {
+  color: #a1a1a6;
+}
+body.theme-dark .atb-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5f5f7;
+}
+body.theme-dark .atb-theme-toggle .icon-sun { display: block; }
+body.theme-dark .atb-theme-toggle .icon-moon { display: none; }
