@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .marca { fill: #0D7A5F; } .letra { fill: #fff; }
+    @media (prefers-color-scheme: dark) { .marca { fill: #45C39A; } .letra { fill: #0F1513; } }
+  </style>
+  <rect class="marca" width="32" height="32" rx="9"/>
+  <text class="letra" x="14.6" y="22.3" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17.5" font-weight="800" letter-spacing="-0.9">jb</text>
+  <circle class="letra" cx="25.2" cy="20.6" r="1.9"/>
+</svg>
