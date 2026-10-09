@@ -1,17 +1,8 @@
 # photos/
 
-Onde dropar a foto do hero da landing.
+- `joao_hero.jpg`: a foto original, de terno (1023 × 1537).
+- `joao_web.jpg`: a mesma, reduzida para 640 px; é a que a página usa (hero e og:image).
 
-## Arquivo esperado
-
-`joao_hero.jpg` — retrato, idealmente 1200×1500 (4:5), JPG comprimido (~150-250 KB).
-
-Caso o arquivo não exista, a landing renderiza um fallback gracioso com as iniciais
-"JB" sobre gradiente cinza-azulado.
-
-## Recortes recomendados
-
-- Enquadramento: peito pra cima, olhar pra câmera ou levemente acima
-- Iluminação: natural, fundo neutro (parede branca, escritório clean)
-- Object-position do CSS está em `center 25%` (foco na parte superior do retrato)
-  — ajustável em `shared/landing.css` na regra `.hero-photo-frame img`.
+Para trocar a foto: substituir o original e gerar a versão web de novo, por exemplo
+`sips -s format jpeg -s formatOptions 82 --resampleWidth 640 joao_hero.jpg --out joao_web.jpg`.
+O enquadramento no círculo do hero fica em `shared/site.css`, regra `.foto img` (object-position).

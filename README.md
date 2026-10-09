@@ -12,10 +12,9 @@ index.html               # página única, para clientes e prospects
 CNAME                    # www.jbraganca.com.br
 shared/site.css          # visual da página (mesmo da página Sobre do Invest Analysis)
 shared/assets/photos/joao_web.jpg   # foto de terno, 640 px (a original fica em joao_hero.jpg)
-shared/assets/logos/     # Itaú, Inter, Ibmec, UFMG
-endividamento.html       # análise antiga; fora da página principal, arquivo mantido
+shared/assets/logos/     # Itaú, Inter, Alfa, Ibmec, UFMG (trajetória e formação)
 assinatura-email.html    # assinatura de e-mail
-shared/theme.css, landing.css, private-topbar.*, theme-*  # visual antigo, só da análise antiga
+favicon.svg, favicon-180.png        # ícone "jb." (navegador e tela inicial do celular)
 ```
 
 ## Conteúdo (página única com âncoras)
