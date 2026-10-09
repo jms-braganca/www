@@ -121,6 +121,15 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 24px 64px; }
 .ferr li b { display: block; font-family: var(--display); font-size: 16px; letter-spacing: -0.01em; }
 .ferr li span { color: var(--muted); font-size: 13.5px; }
 
+.ferr-dois { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.ferr-p .sub { color: var(--verde); font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+.ferr-p h3 { font-size: 24px; font-weight: 700; margin-top: 6px; }
+.ferr-p h3 span { color: var(--verde); }
+.ferr-p p { color: var(--muted); font-size: 15px; line-height: 1.55; margin-top: 10px; }
+.ferr-p ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.ferr-p li { font-size: 14.5px; padding-left: 20px; position: relative; }
+.ferr-p li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--verde); }
+
 /* ── Trajetória ───────────────────────────────────────────────────────── */
 .linha-wrap { padding: 22px 26px 16px; }
 .linha { position: relative; height: 34px; border-radius: 10px; background: color-mix(in srgb, var(--text) 5%, transparent); }
@@ -172,7 +181,7 @@ footer .aviso { max-width: 60em; }
 
 /* ── Celular ──────────────────────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .hero, .duo, .ferr, .contato { grid-template-columns: 1fr; }
+  .hero, .duo, .ferr, .ferr-dois, .contato { grid-template-columns: 1fr; }
   .hero { padding-top: 32px; gap: 28px; }
   .pilares, .passos { grid-template-columns: 1fr; }
   .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
